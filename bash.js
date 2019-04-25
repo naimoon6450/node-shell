@@ -9,6 +9,8 @@ process.stdin.on('data', function(data) {
     .trim()
     .split(' ');
   var cmd = input[0];
+  
+  //takes the rest of the arguments
   var args = input.slice(1);
 
   if (cmd === 'pwd') {
@@ -22,6 +24,10 @@ process.stdin.on('data', function(data) {
   }
   if (cmd === 'echo') {
     commands.echo(args);
+  }
+  if (cmd === 'cat') {
+    //args would be some filename in this case
+    commands.cat(args[0]);
   }
 
   // process.stdout.write('You typed: ' + cmd);
