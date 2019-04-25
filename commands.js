@@ -30,26 +30,29 @@ const echo = (fileName) => {
 };
 
 const cat = (fileName) => {
-  let fileContent;
-  function readFile(callBack) {
-    fs.readFile(fileName, (err, content) => {
+  function readFile(someFile, callBack) {
+    fs.readFile(someFile, (err, content) => {
       if (err) return callBack(err);
       callBack(null, content);
     })
   }
-  
-  readFile((err, content) => {
-    if (err) {
-      process.stdout.write('Failes to read!\n');
+  //for loop through filename?
+  fileName.forEach( textFile => {
+    readFile(textFile, (err, content) => {
+      let fileContent = '';
+      if (err) {
+        process.stdout.write('Failes to read!\n');
+        process.stdout.write('prompt > ');
+      };
+      //must place what you want to do with the result within the callback
+      //asynchronous call so must be done together not outside of this
+      fileContent += content.toString();
+      //will print out the file contents
+      process.stdout.write(fileContent + '\n');
       process.stdout.write('prompt > ');
-    }
-    //must place what you want to do with the result within the callback
-    //asynchronous call so must be done together not outside of this
-    fileContent = content.toString();
-    //will print out the file contents
-    process.stdout.write(fileContent + '\n');
-    process.stdout.write('prompt > ');
-  })
+    });
+  });
+  
 };
 
 

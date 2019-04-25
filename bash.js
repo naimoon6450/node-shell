@@ -26,8 +26,8 @@ process.stdin.on('data', function(data) {
     commands.echo(args);
   }
   if (cmd === 'cat') {
-    //args would be some filename in this case
-    commands.cat(args[0]);
+    //args would be some filename in this case, only takes one arg
+    commands.cat(args);
   }
 
   // process.stdout.write('You typed: ' + cmd);
