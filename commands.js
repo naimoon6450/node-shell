@@ -1,4 +1,5 @@
 const fs = require('fs');
+const request = require('request');
 
 const pwd = (fileName) => {
   process.stdout.write(process.cwd());
@@ -56,5 +57,17 @@ const cat = (fileName) => {
 };
 
 
+const curl = (fileName) => {
+  request(fileName, function (error, response, body) {
+    if (error) console.error('error:', error); // Print the error if one occurred
+    else {
+      console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+      console.log('body:', body); // Print the HTML for the Google homepage.
+      process.stdout.write('body: \n'+ body + '\n');
+      process.stdout.write('prompt > ');
+    }
+  });
+};
 
-module.exports = { pwd, date, ls, echo, cat };
+
+module.exports = { pwd, date, ls, echo, cat, curl };

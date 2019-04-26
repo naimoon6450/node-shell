@@ -29,6 +29,8 @@ process.stdin.on('data', function(data) {
     //args would be some filename in this case, only takes one arg
     commands.cat(args);
   }
-
+  if (cmd === 'curl') {
+    commands.curl(args[0]);
+  }
   // process.stdout.write('You typed: ' + cmd);
 });
